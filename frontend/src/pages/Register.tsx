@@ -74,31 +74,34 @@ export default function Register() {
 
   return (
     <div className="page_body">
-      <div className="form_wrapper">
-        <h1>会員登録</h1>
-        <form onSubmit={handleSubmit} className="input_form">
-          {formFields.map((field) => (
-            <div key={field.name} className="input_area">
-              <label>{field.label}</label>
-              <input
-                type={field.type}
-                name={field.name}
-                value={formData[field.name as keyof FormData]}
-                onChange={handleChange}
-                disabled={loading}
-                required
-              />
-            </div>
-          ))}
-          <button type="submit" disabled={loading}>
-            {loading ? "登録中..." : "会員登録"}
-          </button>
-          {error ? <p>{error}</p> : <p></p>}
-          <p>
-            すでにアカウント持っています？
-            <Link to="/login">ログイン</Link>
-          </p>
-        </form>
+      <div className="page_body_frame">
+        <div className="form_wrapper">
+          <h1>GoShoppingへようこそ！</h1>
+          <h2>会員登録</h2>
+          <form onSubmit={handleSubmit} className="input_form">
+            {formFields.map((field) => (
+              <div key={field.name} className="input_area">
+                <label>{field.label}</label>
+                <input
+                  type={field.type}
+                  name={field.name}
+                  value={formData[field.name as keyof FormData]}
+                  onChange={handleChange}
+                  disabled={loading}
+                  required
+                />
+              </div>
+            ))}
+            <button type="submit" disabled={loading}>
+              {loading ? "登録中..." : "会員登録"}
+            </button>
+            {error ? <p>{error}</p> : <p></p>}
+            <p>
+              すでにアカウント持っています？
+              <Link to="/login">ログイン</Link>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -1,12 +1,26 @@
 .page_body {
   width: 100vw;
-  height: 100%;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page_body_frame {
+  border: 1px solid #333;
+  border-radius: 16px;
+
+  width: 90%;
+  height: 90vh;
+
+  margin: 0 auto;
 }
 
 .form_wrapper {
-  width: 100vw;
-  max-width: 500px;
-  height: 100vh;
+  width: 100%;
+
+  height: 100%;
 
   margin: 0 auto;
 
@@ -17,7 +31,8 @@
 }
 
 .input_form {
-  min-width: 320px;
+  min-width: 400px;
+  max-width: 500px;
   height: fit-content;
   padding: 24px;
 
@@ -30,12 +45,15 @@
   justify-content: center;
   gap: 16px;
 }
+.input_form > button {
+  width: 100%;
+}
 
 .input_area {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 .input_area > input {
   padding: 8px;

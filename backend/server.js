@@ -11,7 +11,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 
 app.get("/", (req, res) => {
-  res.json({ messgae: "API運行中" });
+  res.json({ message: "API運行中" });
 });
 
 app.listen(PORT, () => {

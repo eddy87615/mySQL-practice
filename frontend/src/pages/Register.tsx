@@ -12,6 +12,13 @@ interface FormData {
   confirmPassword: string;
 }
 
+const formFields = [
+  { name: "email", label: "E-mail", type: "text" },
+  { name: "username", label: "ユーザー名", type: "text" },
+  { name: "password", label: "パスワード", type: "password" },
+  { name: "confirmPassword", label: "パスワード確認", type: "password" },
+];
+
 export default function Register() {
   const [formData, setFormData] = useState<FormData>({
     username: "",
@@ -55,7 +62,7 @@ export default function Register() {
     setLoading(true);
 
     try {
-      await register(formData.username, formData.password, formData.email);
+      await register(formData.username, formData.email, formData.password);
       alert("会員登録成功しました！");
       navigate("/login");
     } catch (err: any) {
@@ -66,61 +73,33 @@ export default function Register() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>E-mail</label>
-          <input
-            type="text"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            disabled={loading}
-            required
-          />
-        </div>
-        <div>
-          <label>ユーザー名</label>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            disabled={loading}
-            required
-          />
-        </div>
-        <div>
-          <label>パスワード</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            disabled={loading}
-            required
-          />
-        </div>
-        <div>
-          <label>確認パスワード</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            disabled={loading}
-            required
-          />
-        </div>
-        <button type="submit" disabled={loading}>
-          {loading ? "登録中..." : "会員登録"}
-        </button>
-      </form>
-      {error ? <p>{error}</p> : <p></p>}
-      <p>
-        すでにアカウント持っています？
-        <Link to="/login">ログイン</Link>
-      </p>
+    <div className="page_body">
+      <div className="form_wrapper">
+        <h1>会員登録</h1>
+        <form onSubmit={handleSubmit} className="input_form">
+          {formFields.map((field) => (
+            <div key={field.name} className="input_area">
+              <label>{field.label}</label>
+              <input
+                type={field.type}
+                name={field.name}
+                value={formData[field.name as keyof FormData]}
+                onChange={handleChange}
+                disabled={loading}
+                required
+              />
+            </div>
+          ))}
+          <button type="submit" disabled={loading}>
+            {loading ? "登録中..." : "会員登録"}
+          </button>
+          {error ? <p>{error}</p> : <p></p>}
+          <p>
+            すでにアカウント持っています？
+            <Link to="/login">ログイン</Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 }
